@@ -5,10 +5,10 @@ import java.util.Iterator;
 import java.util.List;
 
 public class BookShelf implements Iterable<Book> {
-    private List<Book> books;
+    private List<Book> books; // 선언
 
     public BookShelf(int initialsize) {
-        this.books = new ArrayList<>(initialsize);
+        this.books = new ArrayList<>(initialsize); //생성
     }
 
     public Book getBookAt(int index) {

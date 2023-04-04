@@ -5,12 +5,13 @@ public class Singleton {
 
     private Singleton() {
         System.out.println("인스턴스가 생성되었습니다.");
-        slowdown();
+        slowdown(); // 생성시 시간이 걸리게 하기 위해서
     }
 
-    public static Singleton getInstance() {
+    // public static Singleton getInstance() {
+    public static synchronized Singleton getInstance() {
         if (singleton == null) {
-            singleton = new Singleton();
+            singleton = new Singleton(); // lazy initialization
         }
         return singleton;
     }

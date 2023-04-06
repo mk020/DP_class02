@@ -11,6 +11,10 @@ public class Main {
         MessageBox mbox = new MessageBox('*');
         MessageBox sbox = new MessageBox('/');
 
+        // 복사 생성자 호출
+        MessageBox copyOfsbox = new MessageBox(sbox);
+        copyOfsbox.use("Duksung");
+
         // 登録
         manager.register("strong message", upen);
         manager.register("warning box", mbox);

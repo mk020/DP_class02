@@ -18,11 +18,5 @@ public class Main {
     Factory f = new IDCardFactory();
     Product id02 = f.create("ymk");
     id02.use();
-
-
-
-
-
-
   }
 }

@@ -15,4 +15,5 @@ public abstract class Factory {
         return null;
     }
     protected abstract void registerProduct(Product product); // 선언
+    public abstract void printAllModelNames();
 }

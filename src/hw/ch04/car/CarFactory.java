@@ -20,6 +20,7 @@ public class CarFactory extends Factory {
     modelNames.add(product.getModelName());
   }
 
+  @Override
   public void printAllModelNames() {
     System.out.println("\n<모델명 리스트>");
     

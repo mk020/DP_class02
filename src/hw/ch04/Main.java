@@ -1,13 +1,14 @@
 package hw.ch04;
 
 import hw.ch04.car.CarFactory;
+import hw.ch04.framework.Factory;
 import hw.ch04.framework.Product;
 
 public class Main {
   public static void main(String[] args) {
     System.out.println("<<20210787 유민경>>");
 
-    CarFactory f = new CarFactory();
+    Factory f = new CarFactory();
     Product car1 = f.create("유민경");
     Product car2 = f.create("그랜저");
     Product car3 = f.create("소나타");

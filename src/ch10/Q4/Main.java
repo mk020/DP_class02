@@ -8,6 +8,8 @@ class Main {
         List<String> list = Arrays.asList("D", "B", "C", "E", "A");
 
         // 사전순으로 작은 순서(오름차순)
+        // list: 전략을 이용하는 Context
+        // Comparator: 전략 객체
         list.sort( new ComparatorAscending() );
         System.out.println(list);
 

@@ -7,6 +7,7 @@ class Main {
         List<String> list = Arrays.asList("D", "B", "C", "E", "A");
 
         // 사전순으로 작은 순서
+        // 익명의 클래스를 이용해서 Comparator 객체를 생성함
         list.sort(new Comparator<String>() {
             public int compare(String a, String b) {
                 return a.compareTo(b);

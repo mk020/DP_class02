@@ -1,5 +1,5 @@
 #written by FileProperties
-#Wed Mar 29 15:03:26 KST 2023
+#Fri Apr 14 23:29:07 KST 2023
 bornYear=2002
 Year=2023
 StudentId=20210787

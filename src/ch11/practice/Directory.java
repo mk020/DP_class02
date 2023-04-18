@@ -37,7 +37,7 @@ public class Directory extends Entry {
         System.out.println(prefix + "/" + this); // 자기것 출력
 
         for (Entry entry: directory) { // 자식들 출력
-            entry.printList(prefix + "/" + name);
+            entry.printList(prefix + "/" + name); // 재귀적 호출
         }
     }
 

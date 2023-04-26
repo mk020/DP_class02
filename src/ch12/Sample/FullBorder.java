@@ -2,7 +2,7 @@ package ch12.Sample;
 
 public class FullBorder extends Border {
     public FullBorder(Display display) {
-        super(display);
+        super(display); // 부모 생성자 호출
     }
 
     @Override
@@ -21,7 +21,7 @@ public class FullBorder extends Border {
     public String getRowText(int row) {
         if (row == 0) {                                             	// 상단 테두리
             return "+" + makeLine('-', display.getColumns()) + "+";
-        } else if (row == display.getRows() + 1) {                 	// 하단 테두리
+        } else if (row == display.getRows() + 1) { // 마지막행        	// 하단 테두리
             return "+" + makeLine('-', display.getColumns()) + "+";
         } else {                                                    		// 기타
             return "|" + display.getRowText(row - 1) + "|";

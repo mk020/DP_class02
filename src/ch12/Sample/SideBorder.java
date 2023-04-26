@@ -5,7 +5,7 @@ public class SideBorder extends Border {
 
     // 내용물이 될 Display와 장식 문자를 지정
     public SideBorder(Display display, char ch) {
-        super(display);
+        super(display); // 부모 생성자 호출
         this.borderChar = ch;
     }
 

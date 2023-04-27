@@ -12,6 +12,8 @@ public class MultiStringDisplay extends Display {
     // 문자열 추가 
     public void add(String msg) {
         body.add(msg);
+
+        // 현재 더 긴 문자열이 추가된다면...
         if (columns < msg.length()) {
             // 최대 문자 수 갱신
             columns = msg.length();
@@ -38,9 +40,11 @@ public class MultiStringDisplay extends Display {
     private void updatePadding() {
         for (int row = 0; row < body.size(); row++) {
             String line = body.get(row);
-            int padding = columns - line.length();
-            if (padding > 0) {
-                body.set(row, line + spaces(padding));
+            // 빈칸을 몇 개 채울까 계산
+            int padding = columns - line.length(); // 전체 - 문자열개수
+
+            if (padding > 0) { // 빈칸을 채워야 되면
+                body.set(row, line + spaces(padding)); // 오른쪽을 왼쪽에 넣어라
             }
         }
     }
@@ -48,9 +52,11 @@ public class MultiStringDisplay extends Display {
     // count 수만큼의 공백을 만든다 
     private String spaces(int count) {
         StringBuilder spaces = new StringBuilder();
+
         for (int i = 0; i < count; i++) {
             spaces.append(' ');
         }
+        
         return spaces.toString();
     }
 }

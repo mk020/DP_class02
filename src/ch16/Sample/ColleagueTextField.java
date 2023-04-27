@@ -9,7 +9,7 @@ public class ColleagueTextField extends TextField implements TextListener, Colle
     private Mediator mediator;
 
     public ColleagueTextField(String text, int columns) {
-        super(text, columns);
+        super(text, columns); // 부모 생성자 호출
     }
 
     // Mediator를 설정한다 

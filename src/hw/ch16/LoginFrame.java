@@ -1,4 +1,4 @@
-package ch16.Sample;
+package hw.ch16;
 
 import java.awt.CheckboxGroup;
 import java.awt.Color;
@@ -11,9 +11,11 @@ import java.awt.event.ActionListener;
 public class LoginFrame extends Frame implements ActionListener, Mediator {
     private ColleagueCheckbox checkGuest;
     private ColleagueCheckbox checkLogin;
+    private ColleagueCheckbox checkMember;
 
     private ColleagueTextField textUser;
     private ColleagueTextField textPass;
+    private ColleagueTextField textSSN; // Social Security Number
 
     private ColleagueButton buttonOk;
     private ColleagueButton buttonCancel;
@@ -26,7 +28,7 @@ public class LoginFrame extends Frame implements ActionListener, Mediator {
         setBackground(Color.lightGray);
 
         // 레이아웃 매니저를 사용해 4×2 그리드를 만든다
-        setLayout(new GridLayout(4, 2));
+        setLayout(new GridLayout(5, 3));
 
         // Colleague를 생성한다 
         createColleagues();
@@ -34,10 +36,20 @@ public class LoginFrame extends Frame implements ActionListener, Mediator {
         // 배치한다 
         add(checkGuest);
         add(checkLogin);
+        add(checkMember);
+
         add(new Label("Username:"));
         add(textUser);
+        add(new Label(""));
+
         add(new Label("Password:"));
         add(textPass);
+        add(new Label(""));
+
+        add(new Label("주민등록번호:"));
+        add(textSSN);
+        add(new Label(""));
+        
         add(buttonOk);
         add(buttonCancel);
 
@@ -56,11 +68,14 @@ public class LoginFrame extends Frame implements ActionListener, Mediator {
         CheckboxGroup g = new CheckboxGroup();
         checkGuest = new ColleagueCheckbox("Guest", g, true);
         checkLogin = new ColleagueCheckbox("Login", g, false);
+        checkMember = new ColleagueCheckbox("Member", g, false);
 
         // TextField
         textUser = new ColleagueTextField("", 10);
         textPass = new ColleagueTextField("", 10);
         textPass.setEchoChar('*');
+        textSSN = new ColleagueTextField("", 13);
+        textSSN.setEchoChar('*');
 
         // Button
         buttonOk = new ColleagueButton("OK");

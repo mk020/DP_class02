@@ -8,6 +8,8 @@ import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 public class LoginFrame extends Frame implements ActionListener, Mediator {
     private ColleagueCheckbox checkGuest;
     private ColleagueCheckbox checkLogin;
@@ -27,7 +29,7 @@ public class LoginFrame extends Frame implements ActionListener, Mediator {
         // 배경색을 설정한다
         setBackground(Color.lightGray);
 
-        // 레이아웃 매니저를 사용해 4×2 그리드를 만든다
+        // 레이아웃 매니저를 사용해 5×3 그리드를 만든다
         setLayout(new GridLayout(5, 3));
 
         // Colleague를 생성한다 
@@ -75,7 +77,7 @@ public class LoginFrame extends Frame implements ActionListener, Mediator {
         textPass = new ColleagueTextField("", 10);
         textPass.setEchoChar('*');
         textSSN = new ColleagueTextField("", 13);
-        textSSN.setEchoChar('*');
+        //textSSN.setEchoChar('*');
 
         // Button
         buttonOk = new ColleagueButton("OK");
@@ -84,16 +86,20 @@ public class LoginFrame extends Frame implements ActionListener, Mediator {
         // Mediator를 설정한다 
         checkGuest.setMediator(this);
         checkLogin.setMediator(this);
+        checkMember.setMediator(this);
         textUser.setMediator(this);
         textPass.setMediator(this);
+        textSSN.setMediator(this);
         buttonOk.setMediator(this);
         buttonCancel.setMediator(this);
 
         // Listener 설정
         checkGuest.addItemListener(checkGuest);
         checkLogin.addItemListener(checkLogin);
+        checkMember.addItemListener(checkMember);
         textUser.addTextListener(textUser);
         textPass.addTextListener(textPass);
+        textSSN.addTextListener(textSSN);
         buttonOk.addActionListener(this);
         buttonCancel.addActionListener(this);
     }
@@ -103,23 +109,44 @@ public class LoginFrame extends Frame implements ActionListener, Mediator {
     public void colleagueChanged() { // 이 안에서 colleague들에게 지시를 내린다.
         if (checkGuest.getState()) { // guest 체크박스가 선택되었다면...
             // 게스트 로그인 
-            textUser.setColleagueEnabled(false); // 비활성화
-            textPass.setColleagueEnabled(false); // 비활성화
-            buttonOk.setColleagueEnabled(true); // 활성화
-        } else { // Login 체크박스가 선택되었다면...
+            textUser.setColleagueEnabled(false);
+            textPass.setColleagueEnabled(false);
+            textSSN.setColleagueEnabled(false);
+            buttonOk.setColleagueEnabled(false);
+        } else if (checkLogin.getState()) { // Login 체크박스가 선택되었다면...
             // 사용자 로그인 
+            textUser.setColleagueEnabled(true);
+            userpassChanged();
+        } else { // member 체크박스가 선택되었다면...
+            // 멤버 로그인
             textUser.setColleagueEnabled(true);
             userpassChanged();
         }
     }
 
-    // textUser 또는 textPass의 변경이 있다 
+    // textUser, textPass, textSSN의 변경이 있다 
     // 각 Colleage의 활성/비활성을 판정한다
     private void userpassChanged() {
         if (textUser.getText().length() > 0) { // 유저네임 칸에 문자열이 입력되어 있으면...
             textPass.setColleagueEnabled(true);
-            if (textPass.getText().length() > 0) {
-                buttonOk.setColleagueEnabled(true);
+            if (textPass.getText().length() > 0) { // 패스워드 칸에 문자열이 입력되어 있으면...
+                textSSN.setColleagueEnabled(true);
+                if (Character.isDigit(textSSN.getText().charAt(textSSN.getText().length()-1))) {
+                    // 주민등록번호는 모두 숫자로 이루어져야 함
+                    if (textSSN.getText().length() == 13) { // 13자리
+                        buttonOk.setColleagueEnabled(true); // OK 버튼 활성화
+                    } else {
+                        buttonOk.setColleagueEnabled(false);
+                    }
+                }
+                else { // 13자리 중에서 숫자 이외의 문자를 입력하면
+                    // 경고창
+                    JOptionPane.showMessageDialog(this, "숫자 이외의 문자를 입력하지 마세요!", "주민등록번호 13자리", JOptionPane.WARNING_MESSAGE);
+                    // 입력했던 한 문자 사라짐
+                    textSSN.setText(textSSN.getText().substring(0, textSSN.getText().length()-1));
+                    // 다시 그 위치로 커서 이동
+                    textSSN.setCaretPosition(textSSN.getText().length());
+                }
             } else { // 패스워드 칸에 문자열이 없으면...
                 buttonOk.setColleagueEnabled(false);
             }

@@ -13,12 +13,12 @@ import java.awt.event.ActionListener;
 public class SafeFrame extends Frame implements ActionListener, Context {
     private TextField textClock = new TextField(60);		// 현재 시간 표시
     private TextArea textScreen = new TextArea(10, 60);	// 경비 센터 출력
-    private Button buttonUse = new Button("금고 사용");	// 금고 사용 버튼
-    private Button buttonAlarm = new Button("비상벨");	// 비상벨 버튼
-    private Button buttonPhone = new Button("일반 통화");	// 일반 통화 버튼
-    private Button buttonExit = new Button("종료");		// 종료 버튼
+    private Button buttonUse = new Button("Use Safe");	// 금고 사용 버튼
+    private Button buttonAlarm = new Button("Alarm");	// 비상벨 버튼
+    private Button buttonPhone = new Button("Phone");	// 일반 통화 버튼
+    private Button buttonExit = new Button("exit");		// 종료 버튼
 
-    private State state = DayState.getInstance();		// 현재 상태 
+    private State state = DayState.getInstance();		// 현재 상태를 가짐(부모타입으로 선언됨) **
 
     // 생성자 
     public SafeFrame(String title) {
@@ -54,7 +54,7 @@ public class SafeFrame extends Frame implements ActionListener, Context {
     public void actionPerformed(ActionEvent e) {
         System.out.println(e.toString());
         if (e.getSource() == buttonUse) {		// 금고 사용 버튼
-            state.doUse(this);
+            state.doUse(this); // 현재 상태 객체에게 위임 **
         } else if (e.getSource() == buttonAlarm) {	// 비상벨 버튼 
             state.doAlarm(this);
         } else if (e.getSource() == buttonPhone) {	// 일반 통화 버튼  
@@ -72,6 +72,7 @@ public class SafeFrame extends Frame implements ActionListener, Context {
         String clockstring = String.format("현재 시간은 %02d:00", hour);
         System.out.println(clockstring);
         textClock.setText(clockstring);
+        
         state.doClock(this, hour);
     }
 

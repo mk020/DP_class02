@@ -1,7 +1,7 @@
 package ch19.Sample;
 
 public class DayState implements State {
-    private static DayState singleton = new DayState();
+    private static DayState singleton = new DayState(); // 하나의 상태만 필요하므로 Singleton 패턴 사용
 
     private DayState() {
     }
@@ -12,8 +12,8 @@ public class DayState implements State {
 
     @Override
     public void doClock(Context context, int hour) {
-        if (hour < 9 || 17 <= hour) {
-            context.changeState(NightState.getInstance());
+        if (hour < 9 || 17 <= hour) { // 현재 시각이 야간이면...
+            context.changeState(NightState.getInstance()); // 현재 상태를 야간으로 바꿔라
         }
     }
 

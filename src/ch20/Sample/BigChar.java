@@ -11,12 +11,12 @@ public class BigChar {
     private String fontdata;
 
     // 생성자 
-    public BigChar(char charname) {
+    public BigChar(char charname) { // '1'
         this.charname = charname;
         try {
             String filename = "big" + charname + ".txt";
             StringBuilder sb = new StringBuilder();
-            for (String line: Files.readAllLines(Path.of(filename))) {
+            for (String line: Files.readAllLines(Path.of(filename))) { // big1.txt 한줄씩 읽음
                 sb.append(line);
                 sb.append("\n");
             }

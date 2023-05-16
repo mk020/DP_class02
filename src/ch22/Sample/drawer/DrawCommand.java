@@ -5,7 +5,7 @@ import java.awt.Point;
 
 public class DrawCommand implements Command {
     // 그리는 대상 
-    protected Drawable drawable;
+    protected Drawable drawable; // Receiver
 
     // 그리는 위치 
     private Point position;

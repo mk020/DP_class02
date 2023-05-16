@@ -45,6 +45,8 @@ public class SafeFrame extends Frame implements Context {
         setVisible(true);
         // 리스너 설정 
         //buttonUse.addActionListener(this);
+        // 람다식은 Functional Interface가 들어갈 자리에 넣어줄 수 있다.
+        // 메소드 한개만 선언되어 있는 인터페이스 => Functional Interface
         buttonUse.addActionListener(e -> state.doUse(this));
         //buttonAlarm.addActionListener(this);
         buttonAlarm.addActionListener(e -> state.doAlarm(this));

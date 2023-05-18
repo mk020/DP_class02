@@ -10,6 +10,9 @@ public class DrawCommand implements Command {
     // 그리는 위치 
     private Point position;
 
+    // 모양
+    private String shape;
+
     // 생성자 
     public DrawCommand(Drawable drawable, Point position) {
         this.drawable = drawable;
@@ -19,6 +22,6 @@ public class DrawCommand implements Command {
     // 실행
     @Override
     public void execute() {
-        drawable.draw(position.x, position.y);
+        drawable.draw(position.x, position.y); // 실제 그리는 일을 함
     }
 }

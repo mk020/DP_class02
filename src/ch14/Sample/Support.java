@@ -2,7 +2,7 @@ package ch14.Sample;
 
 public abstract class Support {
     private String name;    // 이 트러블 해결자 이름
-    private Support next;   // 떠넘길 곳
+    private Support next;   // 떠넘길 곳(부모 타입) - 자식 중 어떤 것이든 가리킬 수 O
 
     public Support(String name) {
         this.name = name;
@@ -16,13 +16,13 @@ public abstract class Support {
     }
 
     // 트러블 해결 절차를 결정한다
-    public void support(Trouble trouble) {
-        if (resolve(trouble)) {
+    public void support(Trouble trouble) { // 템플릿 메소드
+        if (resolve(trouble)) { // 해결했으면...
             done(trouble);
-        } else if (next != null) {
-            next.support(trouble);
-        } else {
-            fail(trouble);
+        } else if (next != null) { // 뒷사람이 있으면...
+            next.support(trouble); // 뒷사람한테 넘긴다
+        } else { // 뒷사람이 없으면...
+            fail(trouble); // 실패
         }
     }
 
@@ -33,7 +33,7 @@ public abstract class Support {
     }
 
     // 해결하려고 한다
-    protected abstract boolean resolve(Trouble trouble);
+    protected abstract boolean resolve(Trouble trouble); // 자식들이 자기 방식으로 해결하도록 한다
 
     // 해결했다 
     protected void done(Trouble trouble) {

@@ -10,7 +10,8 @@ public class Main {
         Support fred = new LimitSupport("Fred", 300);
 
         // 사슬 형성 
-        alice.setNext(bob).setNext(charlie).setNext(diana).setNext(elmo).setNext(fred);
+        // alice.setNext(bob).setNext(charlie).setNext(diana).setNext(elmo).setNext(fred); // 연쇄적 호출
+        alice.setNext(fred).setNext(diana).setNext(charlie).setNext(bob).setNext(elmo); // 순서를 바꿀 수 있음
 
         // 다양한 트러블 발생
         for (int i = 0; i < 500; i += 33) {

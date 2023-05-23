@@ -8,6 +8,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Main extends JFrame implements MouseMotionListener, WindowListener {
+// public class Main extends JFrame, WindowAdapter implements MouseMotionListener { // 상속여러개X
     // 그리기 이력 
     private MacroCommand history = new MacroCommand();
     // 그리는 영역 
@@ -21,7 +22,38 @@ public class Main extends JFrame implements MouseMotionListener, WindowListener 
 
         // 리스너 등록
         this.addWindowListener(this);
-        canvas.addMouseMotionListener(this);
+
+        // (1) 리스너 클래스를 만들어서 등록
+        // canvas.addMouseMotionListener(this);
+
+        // (2) 익명의 내부 클래스를 이용해서 등록
+        // canvas.addMouseMotionListener(new MouseMotionListener() {
+
+        //     @Override
+        //     public void mouseMoved(MouseEvent e) {
+        //     }
+
+        //     @Override
+        //     public void mouseDragged(MouseEvent e) {
+        //         Command cmd = new DrawCommand(canvas, e.getPoint() /* , 현재시각 */);
+        //         //System.out.println("마우스 이벤트: x 좌표 : "+e.getPoint().getX());
+        //         //System.out.println("마우스 이벤트: y 좌표 : "+e.getPoint().getY());
+        //         history.append(cmd);
+        //         cmd.execute();
+        //     }
+            
+        // });
+
+        // (3) 익명의 내부 클래스와 어댑터를 이용해서 등록
+        canvas.addMouseMotionListener(new MouseMotionAdapter() {
+            public void mouseDragged(MouseEvent e) {
+                Command cmd = new DrawCommand(canvas, e.getPoint() /* , 현재시각 */);
+                //System.out.println("마우스 이벤트: x 좌표 : "+e.getPoint().getX());
+                //System.out.println("마우스 이벤트: y 좌표 : "+e.getPoint().getY());
+                history.append(cmd);
+                cmd.execute();
+            }
+        });
 
         // ActionListener는 functional interface(actionPerfomed 한개만 선언되어 있음)
         // functional interface 들어갈 자리에 람다식을 넣어줄 수 있다.

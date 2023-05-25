@@ -17,6 +17,7 @@ public abstract class Support {
 
     // 트러블 해결 절차를 결정한다
     public void support(Trouble trouble) { // 템플릿 메소드
+        // for 루프로 바꿀 수 있음
         if (resolve(trouble)) { // 해결했으면...
             done(trouble);
         } else if (next != null) { // 뒷사람이 있으면...

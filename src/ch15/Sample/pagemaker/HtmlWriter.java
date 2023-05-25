@@ -14,9 +14,11 @@ public class HtmlWriter {
     public void title(String title) throws IOException {
         writer.write("<!DOCTYPE html>");
         writer.write("<html>");
+
         writer.write("<head>");
         writer.write("<title>" + title + "</title>");
         writer.write("</head>");
+
         writer.write("<body>");
         writer.write("\n");
         writer.write("<h1>" + title + "</h1>");
@@ -44,6 +46,7 @@ public class HtmlWriter {
         writer.write("</body>");
         writer.write("</html>");
         writer.write("\n");
+        
         writer.close();
     }
 }

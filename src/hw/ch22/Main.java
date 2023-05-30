@@ -31,8 +31,6 @@ public class Main extends JFrame implements MouseMotionListener, WindowListener 
 
         this.addWindowListener(this);
         canvas.addMouseMotionListener(this);
-
-        //canvas.init();
         
         clearButton.addActionListener(e -> {
             history.clear();

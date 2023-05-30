@@ -2,25 +2,19 @@ package hw.ch22.command;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Iterator;
 
 public class MacroCommand implements Command {
     // 명령의 배열 
     private Deque<Command> commands = new ArrayDeque<>();
     private Deque<Command> commands2 = new ArrayDeque<>();
 
-    private Iterator<Command> it = commands.descendingIterator();
-    private Iterator<Command> it2 = commands2.descendingIterator();
-
     // 실행 
     @Override
     public void execute() {
-        // for (Command cmd: commands) {
+        // for (Command cmd: commands) { // 내부적으로는 iterator()를 호출해서 동작함 => 스택의 top에서부터 꺼내옴
         //     cmd.execute();
         // }
-        while (it.hasNext()) {
-            it.next().execute();
-        }
+        
     }
 
     // 추가 

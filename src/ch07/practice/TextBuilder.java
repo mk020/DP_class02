@@ -1,6 +1,6 @@
-package ch07.Sample;
+package ch07.practice;
 
-public class TextBuilder extends Builder {
+public class TextBuilder implements Builder {
     private StringBuilder sb = new StringBuilder(); // vs StringBuffer
 
     @Override

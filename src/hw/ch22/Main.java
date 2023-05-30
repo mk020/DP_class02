@@ -22,6 +22,8 @@ public class Main extends JFrame implements MouseMotionListener, WindowListener 
     private JButton blueButton  = new JButton("blue");
     // 실행 취소 버튼(undo)
     private JButton undoButton  = new JButton("undo");
+    // redo 버튼
+    private JButton redoButton  = new JButton("redo");
 
     // 생성자 
     public Main(String title) {
@@ -56,6 +58,10 @@ public class Main extends JFrame implements MouseMotionListener, WindowListener 
             history.undo();
             canvas.repaint();
         });
+        redoButton.addActionListener(e -> {
+            history.redo();
+            canvas.repaint();
+        });
 
         Box buttonBox = new Box(BoxLayout.X_AXIS);
         buttonBox.add(clearButton);
@@ -63,6 +69,7 @@ public class Main extends JFrame implements MouseMotionListener, WindowListener 
         buttonBox.add(greenButton);
         buttonBox.add(blueButton);
         buttonBox.add(undoButton);
+        buttonBox.add(redoButton);
         Box mainBox = new Box(BoxLayout.Y_AXIS);
         mainBox.add(buttonBox);
         mainBox.add(canvas);

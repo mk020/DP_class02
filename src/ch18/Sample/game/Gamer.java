@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+// Originator
 public class Gamer {
     // 소지금
     private int money;
@@ -30,7 +31,7 @@ public class Gamer {
     // 내기한다 … 게임 진행 
     public void bet() {
         // 주사위를 던진다 
-        int dice = random.nextInt(6) + 1;
+        int dice = random.nextInt(6) + 1; // 0~5사이의 정수 발생 + 1 => 1~6
         if (dice == 1) {
             // 1의 눈 … 소지금이 증가한다 
             money += 100;
@@ -53,6 +54,7 @@ public class Gamer {
     // 스냅샷을 찍는다 
     public Memento createMemento() {
         Memento m = new Memento(money);
+        
         for (String f: fruits) {
             // 과일은 맛있는 것만 저장한다
             if (f.startsWith("맛있는 ")) {

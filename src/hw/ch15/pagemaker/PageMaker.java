@@ -2,6 +2,8 @@ package hw.ch15.pagemaker;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
 public class PageMaker {
@@ -42,8 +44,8 @@ public class PageMaker {
 
     public static void makeUrlPage(String filename) {
         try {
-            HtmlWriter writer = new HtmlWriter(new FileWriter(filename));
-            writer.title("Minkyeong Yu's URL Page");
+            HtmlWriter writer = new HtmlWriter(new FileWriter(filename, StandardCharsets.UTF_8));
+            writer.title("유민경의 URL Page");
             Properties urlprop = Database.getProperties("urldata");
             for (String urlname: urlprop.stringPropertyNames()) {
                 String url = urlprop.getProperty(urlname);

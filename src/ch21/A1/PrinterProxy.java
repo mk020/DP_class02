@@ -38,7 +38,12 @@ public class PrinterProxy implements Printable {
     private synchronized void realize() {
         if (real == null) {
             try {
-                real = (Printable)Class.forName(className).getDeclaredConstructor().newInstance();
+                //real = (Printable)Class.forName("ch21.A1." + className).getDeclaredConstructor().newInstance();
+                
+                String packageName;
+                packageName = this.getClass().getPackage().getName();
+
+                real = (Printable)Class.forName(packageName+"."+className).getDeclaredConstructor().newInstance();
                 real.setPrinterName(name);
             } catch (ClassNotFoundException e) {
                 System.out.println("클래스 " + className + " 가 발견되지 않습니다.");
